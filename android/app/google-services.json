@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "438272696563",
+    "firebase_url": "https://smartsparks-274fc.firebaseio.com",
+    "project_id": "smartsparks-274fc",
+    "storage_bucket": "smartsparks-274fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438272696563:android:6a470f93ad06a59a58d786",
+        "android_client_info": {
+          "package_name": "com.IrisBICS.smartsparks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438272696563-e3an4br6odouuge00s13j9bs26i2t5o9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRIMtTa7giSGKqdjHgFF2lg5BcxUvkb-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438272696563-e3an4br6odouuge00s13j9bs26i2t5o9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
