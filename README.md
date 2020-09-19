@@ -1,4 +1,3 @@
-# Bachelor Semester Project 5
 # SmartSparks - A Crowdsourcing App for Companies
 
 Student: Iris Pascale Kremer (0180537960)
