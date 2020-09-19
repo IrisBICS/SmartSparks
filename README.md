@@ -1,7 +1,7 @@
 # SmartSparks - A Crowdsourcing App for Companies
 
-Student: Iris Pascale Kremer (0180537960)
-PAT: Steffen Rothkugel
+* Student: Iris Pascale Kremer (0180537960)
+* PAT: Steffen Rothkugel
 
 ## Project Description
 
@@ -22,12 +22,12 @@ Crowdsourcing is a powerful and sometimes underestimated technique to gather dat
 
 ### (Future) Submissions
 
-Final Project Description: 
-Scientific and Technical Report: 
+* Final Project Description: 
+* Scientific and Technical Report: 
 
 ### Work
 
-Github Repository: <https://github.com/IrisBICS/SmartSparks>
-Firebase Project: <https://console.firebase.google.com/project/smartsparks-274fc/overview>
-Google Drive (Private): <https://drive.google.com/drive/folders/1Wl9aUORzXw2P-tfKvTvJNgqO3youyYMI>
-Google Drive (Shared with PAT): <https://drive.google.com/drive/folders/1iVImZNH_mVXT65bxuD4JWoDSHbcOSumZ>
+* Github Repository: <https://github.com/IrisBICS/SmartSparks>
+* Firebase Project: <https://console.firebase.google.com/project/smartsparks-274fc/overview>
+* Google Drive (Private): <https://drive.google.com/drive/folders/1Wl9aUORzXw2P-tfKvTvJNgqO3youyYMI>
+* Google Drive (Shared with PAT): <https://drive.google.com/drive/folders/1iVImZNH_mVXT65bxuD4JWoDSHbcOSumZ>
