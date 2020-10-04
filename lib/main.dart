@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/authenticate/login.dart';
+import 'screens/wrapper.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'SmartSparks',
-      home: Login(),
+      home: Wrapper(),
     );
   }
 }

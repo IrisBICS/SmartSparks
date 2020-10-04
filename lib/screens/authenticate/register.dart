@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smartsparks/shared/constants.dart';
 
-class Login extends StatefulWidget {
+class Register extends StatefulWidget {
 
   final Function toggleLogin;
 
-  Login({this.toggleLogin});
+  Register({this.toggleLogin});
 
   @override
-  _LoginState createState() => _LoginState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
 
@@ -34,7 +34,7 @@ class _LoginState extends State<Login> {
               color: white,
             ),
             label: Text(
-              'Register',
+              'Login',
               style: TextStyle(color: white),
             ),
           )
@@ -60,7 +60,7 @@ class _LoginState extends State<Login> {
                         margin: EdgeInsets.only(bottom: 35),
                         child: Center(
                           child: Text(
-                            "Login",
+                            "Register",
                             style: TextStyle(color: white, fontSize: 40, fontWeight: FontWeight.bold)
                           )
                         )
@@ -82,7 +82,7 @@ class _LoginState extends State<Login> {
                             RaisedButton(
                               color: yellow,
                               child: Text(
-                                'Login',
+                                'Register',
                                 style: TextStyle(color: white, fontSize: 18),
                               ),
                               onPressed: () {},
