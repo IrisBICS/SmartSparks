@@ -6,7 +6,7 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final user = null;
+    final user = true; //Setup user stream
 
     return user != null ? Home() : Authenticate();
   }
