@@ -15,7 +15,7 @@ class _TopicsListState extends State<TopicsList> {
     return ListView.builder(
       padding: EdgeInsets.all(10.0),
       scrollDirection: Axis.horizontal,
-      itemCount: 15, //Count of all topics
+      itemCount: 5, //Count of all topics
       itemBuilder: (BuildContext context, int index) {
         return TopicTile(); //Pass in topics data
       },

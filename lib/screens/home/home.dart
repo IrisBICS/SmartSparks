@@ -17,55 +17,22 @@ class Home extends StatelessWidget {
         backgroundColor: yellow,
         elevation: 0.0,
         title: Text('Home'),
-        /* actions: <Widget>[
-          FlatButton.icon(
-            onPressed: () {},
-            icon: Icon(
-              Icons.settings,
-              color: white,
-            ),
-            label: Text(
-              'Options',
-              style: TextStyle(color: white),
-            ),
-          ),
-          FlatButton.icon(
-            onPressed: () async {
-              dynamic result = _auth.logout();
-              if (result == null) {
-                print('Unsuccessful');
-              }
-            },
-            icon: Icon(
-              Icons.person,
-              color: white,
-            ),
-            label: Text(
-              'Logout',
-              style: TextStyle(color: white),
-            ),
-          )
-        ] */
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: 600,
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(20, 320, 20, 0),
-                      child: SvgPicture.asset('assets/images/undraw_working_late_pukg.svg')
-                    )
-                  ),
-                TopicsList(),
-                ],
-              )
-            )
-          ]
-        ),
+        child: Container(
+          height: 600,
+          child: Stack(
+            children: <Widget>[
+              Positioned(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(20, 320, 20, 0),
+                  child: SvgPicture.asset('assets/images/undraw_working_late_pukg.svg')
+                )
+              ),
+            TopicsList(),
+            ],
+          )
+        )
       ),
       endDrawer: OptionsTab(),
     );
