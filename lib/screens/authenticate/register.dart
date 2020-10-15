@@ -101,9 +101,7 @@ class _RegisterState extends State<Register> {
                                 onPressed: () async {
                                   if (_formKey.currentState.validate()) {
                                     dynamic result = await _auth.register(email, password);
-                                    if(result != null) {
-                                      print(result.uid);
-                                    } else {
+                                    if(result == null) {
                                       print('Unsuccessful');
                                     }
                                   }

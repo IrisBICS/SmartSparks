@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smartsparks/shared/constants.dart';
 import 'components/topicsList.dart';
+import 'package:smartsparks/services/auth.dart';
 
 class Home extends StatelessWidget {
+
+  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,26 +27,44 @@ class Home extends StatelessWidget {
               'Options',
               style: TextStyle(color: white),
             ),
+          ),
+          FlatButton.icon(
+            onPressed: () async {
+              dynamic result = _auth.logout();
+              if (result == null) {
+                print('Unsuccessful');
+              }
+            },
+            icon: Icon(
+              Icons.person,
+              color: white,
+            ),
+            label: Text(
+              'Logout',
+              style: TextStyle(color: white),
+            ),
           )
         ]
       ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            height: 600,
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(20, 320, 20, 0),
-                    child: SvgPicture.asset('assets/images/undraw_working_late_pukg.svg')
-                  )
-                ),
-              TopicsList(),
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 600,
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(20, 320, 20, 0),
+                      child: SvgPicture.asset('assets/images/undraw_working_late_pukg.svg')
+                    )
+                  ),
+                TopicsList(),
+                ],
+              )
             )
-          )
-        ]
+          ]
+        ),
       )
     );
   }

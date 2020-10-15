@@ -101,9 +101,7 @@ class _LoginState extends State<Login> {
                                 onPressed: () async {
                                   if (_formKey.currentState.validate()) {
                                     dynamic result = await _auth.login(email, password);
-                                    if(result != null) {
-                                      print(result.uid);
-                                    } else {
+                                    if(result == null) {
                                       print('Unsuccessful');
                                     }
                                   }
