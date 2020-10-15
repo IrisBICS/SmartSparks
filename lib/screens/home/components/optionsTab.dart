@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smartsparks/shared/constants.dart';
 import 'package:smartsparks/services/auth.dart';
+import 'package:smartsparks/screens/home/profile.dart';
 
 class OptionsTab extends StatefulWidget {
   @override
@@ -36,7 +37,12 @@ class _OptionsTabState extends State<OptionsTab> {
           ListTile(
             leading: Icon(Icons.account_circle),
             title: Text('Profile'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Profile()),
+              );
+            },
           ),
           ListTile(
             leading: Icon(Icons.edit),

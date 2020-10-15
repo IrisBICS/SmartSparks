@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smartsparks/shared/bgImage.dart';
 import 'package:smartsparks/shared/constants.dart';
 import 'package:smartsparks/services/auth.dart';
 
@@ -52,12 +52,7 @@ class _RegisterState extends State<Register> {
               height: 600,
               child: Stack(
                 children: <Widget>[
-                  Positioned(
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(20, 320, 20, 0),
-                      child: SvgPicture.asset('assets/images/undraw_working_late_pukg.svg')
-                      )
-                  ),
+                  BgImage(),
                   Padding(
                     padding: EdgeInsets.fromLTRB(40, 35, 40, 0),
                     child: Column(
