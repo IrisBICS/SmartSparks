@@ -4,10 +4,12 @@ import 'package:smartsparks/shared/constants.dart';
 class TopicTile extends StatelessWidget {
 
   //Data to be obtained from the caller later
-  final String date = '24/08/2020';
-  final String author = 'Admin1';
-  final String title = 'Topic1';
-  final String data = 'This is the body'; //Will be markdown data later
+  final String date;
+  final String author;
+  final String title;
+  final String data; //Will be markdown data later
+
+  TopicTile({this.date, this.author, this.title, this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class TopicTile extends StatelessWidget {
       padding: EdgeInsets.all(10.0),
       child: Container(
         width: 370.0,
-        color: lightGray,
+        color: lightGray.withAlpha(180),
         child: Padding(
           padding: EdgeInsets.all(10.0),
           child: Text("Topic item"), //Container with all the data

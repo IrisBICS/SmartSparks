@@ -5,7 +5,7 @@ class DatabaseService {
 
   final CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
 
-  Future getUser(String uid) async {
+  Future<SSUser> getUser(String uid) async {
     return await usersCollection.doc(uid).get().then((doc) {
       final userData = doc.data();
       return userData != null ? SSUser(uid: uid, username: userData['username'], email: userData['email'], rank: userData['rank'], smartPoints: userData['smartPoints'], sparkPoints: userData['sparkPoints']) : null;
@@ -21,4 +21,19 @@ class DatabaseService {
       'rank': ssuser.rank
     });
   }
+
+  // Update points
+
+  // Update topic
+
+  // Create spark
+
+  // Create comment
+
+  // Get Topics
+
+  // Get Sparks
+
+  // Get Comments
+
 }

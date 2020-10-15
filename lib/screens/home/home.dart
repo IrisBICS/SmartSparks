@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smartsparks/shared/constants.dart';
 import 'components/topicsList.dart';
 import 'package:smartsparks/services/auth.dart';
+import 'components/optionsTab.dart';
 
 class Home extends StatelessWidget {
 
@@ -16,7 +17,7 @@ class Home extends StatelessWidget {
         backgroundColor: yellow,
         elevation: 0.0,
         title: Text('Home'),
-        actions: <Widget>[
+        /* actions: <Widget>[
           FlatButton.icon(
             onPressed: () {},
             icon: Icon(
@@ -44,7 +45,7 @@ class Home extends StatelessWidget {
               style: TextStyle(color: white),
             ),
           )
-        ]
+        ] */
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -65,7 +66,8 @@ class Home extends StatelessWidget {
             )
           ]
         ),
-      )
+      ),
+      endDrawer: OptionsTab(),
     );
   }
 }
