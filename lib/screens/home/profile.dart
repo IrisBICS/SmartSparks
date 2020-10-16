@@ -4,12 +4,9 @@ import 'components/optionsTab.dart';
 import 'package:smartsparks/models/ssuser.dart';
 import 'components/pointGauge.dart';
 import 'package:smartsparks/shared/bgImage.dart';
+import 'package:provider/provider.dart';
 
 class Profile extends StatefulWidget {
-
-  final SSUser user;
-
-  Profile({this.user});
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -19,16 +16,19 @@ class _ProfileState extends State<Profile> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final int testVal = 150;
-  final int testMin = 100;
-  final int testMax = 200;
-  final String testRank = "Active Contributor";
-  final String testUsername = "User 1";
+  //final int testVal = 150;
+  final int testMin = 0;
+  final int testMax = 1000;
+  //final String testRank = "Active Contributor";
+  //final String testUsername = "User 1";
 
   String newUsername = '';
 
   @override
   Widget build(BuildContext context) {
+
+    final user = Provider.of<SSUser>(context);
+
     return Scaffold(
       backgroundColor: darkGray,
       appBar: AppBar(
@@ -56,8 +56,8 @@ class _ProfileState extends State<Profile> {
                       child: Row(
                         children: <Widget>[
                           Expanded(child: SizedBox()),
-                          PointGauge(min: testMin, max: testMax, val: testVal, label: "Intuition"),
-                          PointGauge(min: testMin, max: testMax, val: testVal, label: "Innovation"),
+                          PointGauge(min: testMin, max: testMax, val: user.smartPoints, label: "Intuition"),
+                          PointGauge(min: testMin, max: testMax, val: user.sparkPoints, label: "Innovation"),
                           Expanded(child: SizedBox()),
                         ],
                       ),
@@ -65,7 +65,7 @@ class _ProfileState extends State<Profile> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(15, 15, 15, 50),
                       child: Text(
-                        'Rank: ' + testRank,
+                        'Rank: ' + user.rank,
                         style: TextStyle(fontSize: 20, color: white, fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -89,7 +89,7 @@ class _ProfileState extends State<Profile> {
                             TextFormField(
                               validator: (val) => val.isEmpty ? 'Please enter a username' : null,
                               decoration: textInputDecoration.copyWith(hintText: 'Username'),
-                              initialValue: testUsername,
+                              initialValue: user.username,
                               onChanged: (val) {
                                 setState(() => newUsername = val);
                               },
