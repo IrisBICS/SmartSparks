@@ -2,15 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smartsparks/models/ssuser.dart';
 import 'package:smartsparks/services/database.dart';
-import 'profile.dart';
+import 'components/profile.dart';
 
-class ProfilePage extends StatefulWidget {
-  @override
-  _ProfilePageState createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
-
+class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 

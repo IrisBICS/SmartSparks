@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:smartsparks/shared/constants.dart';
-import 'components/optionsTab.dart';
+import 'optionsTab.dart';
 import 'package:smartsparks/models/ssuser.dart';
-import 'components/pointGauge.dart';
+import 'pointGauge.dart';
 import 'package:smartsparks/shared/bgImage.dart';
 import 'package:provider/provider.dart';
+import 'package:smartsparks/shared/loading.dart';
 
 class Profile extends StatefulWidget {
 
@@ -29,7 +30,7 @@ class _ProfileState extends State<Profile> {
 
     final user = Provider.of<SSUser>(context);
 
-    return Scaffold(
+    return user == null ? Loading() : Scaffold(
       backgroundColor: darkGray,
       appBar: AppBar(
         leading: IconButton(
