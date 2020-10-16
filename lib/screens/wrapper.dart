@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home/home.dart';
+import 'home/homePage.dart';
 import 'authenticate/authenticate.dart';
 import 'package:provider/provider.dart';
 import 'package:smartsparks/models/ssuser.dart';
@@ -10,6 +10,6 @@ class Wrapper extends StatelessWidget {
 
     final user = Provider.of<ProviderUser>(context);
 
-    return user != null ? Home() : Authenticate();
+    return user != null ? HomePage() : Authenticate();
   }
 }

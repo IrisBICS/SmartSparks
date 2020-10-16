@@ -4,7 +4,7 @@ import 'package:smartsparks/shared/constants.dart';
 import 'components/topicsList.dart';
 import 'components/optionsTab.dart';
 
-class Home extends StatelessWidget {
+class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               BgImage(),
-            TopicsList(),
+              TopicsList(),
             ],
           )
         )
