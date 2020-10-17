@@ -11,6 +11,10 @@ class Topic {
 
   Topic({this.topicID, this.title, this.description, this.publishDate, this.deadline, this.creatorID, this.creatorUsername, this.sparksCount});
 
+/*   void setTitle(title) {
+
+  } */
+
 }
 
 class Spark {

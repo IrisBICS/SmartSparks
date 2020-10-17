@@ -34,6 +34,7 @@ dependencies:
   provider: ^4.3.2+2
   syncfusion_flutter_gauges: ^18.3.40
   flutter_spinkit: ^4.1.2+1
+  flutter_markdown: ^0.4.4
 
 dev_dependencies:
   flutter_test:

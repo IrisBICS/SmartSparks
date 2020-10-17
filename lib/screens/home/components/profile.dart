@@ -33,12 +33,6 @@ class _ProfileState extends State<Profile> {
     return user == null ? Loading() : Scaffold(
       backgroundColor: darkGray,
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.keyboard_arrow_left),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         backgroundColor: yellow,
         elevation: 0.0,
         title: Text('Profile'),
@@ -48,7 +42,7 @@ class _ProfileState extends State<Profile> {
           height: 600,
           child: Stack(
             children: <Widget>[
-              BgImage(),
+              BgImage(top: 320),
               SingleChildScrollView(
                 child: Column(
                   children: <Widget>[

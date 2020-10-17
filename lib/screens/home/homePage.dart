@@ -3,6 +3,7 @@ import 'package:smartsparks/shared/bgImage.dart';
 import 'package:smartsparks/shared/constants.dart';
 import 'components/topicsList.dart';
 import 'components/optionsTab.dart';
+import 'newTopicPage.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -20,11 +21,21 @@ class HomePage extends StatelessWidget {
           height: 600,
           child: Stack(
             children: <Widget>[
-              BgImage(),
+              BgImage(top: 320),
               TopicsList(),
             ],
           )
         )
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => NewTopicPage()),
+          );
+        },
+        child: Icon(Icons.add),
+        backgroundColor: yellow,
       ),
       endDrawer: OptionsTab(),
     );

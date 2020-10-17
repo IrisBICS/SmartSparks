@@ -54,7 +54,7 @@ class _LoginState extends State<Login> {
               height: 600,
               child: Stack(
                 children: <Widget>[
-                  BgImage(),
+                  BgImage(top: 320),
                   Padding(
                     padding: EdgeInsets.fromLTRB(40, 35, 40, 0),
                     child: Column(
