@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smartsparks/shared/bgImage.dart';
 import 'package:smartsparks/shared/constants.dart';
 import 'package:smartsparks/services/auth.dart';
+import 'package:smartsparks/shared/loading.dart';
 
 class Register extends StatefulWidget {
 
@@ -20,10 +21,11 @@ class _RegisterState extends State<Register> {
 
   String email = '';
   String password = '';
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       backgroundColor: darkGray,
       appBar: AppBar(
         backgroundColor: yellow,
@@ -52,7 +54,7 @@ class _RegisterState extends State<Register> {
               height: 600,
               child: Stack(
                 children: <Widget>[
-                  BgImage(),
+                  BgImage(top: 320),
                   Padding(
                     padding: EdgeInsets.fromLTRB(40, 35, 40, 0),
                     child: Column(
@@ -95,8 +97,10 @@ class _RegisterState extends State<Register> {
                                 ),
                                 onPressed: () async {
                                   if (_formKey.currentState.validate()) {
+                                    setState(() => loading = true);
                                     dynamic result = await _auth.register(email, password);
                                     if(result == null) {
+                                      setState(() => loading = false);
                                       print('Unsuccessful');
                                     }
                                   }
