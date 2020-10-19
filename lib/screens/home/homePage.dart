@@ -4,11 +4,18 @@ import 'package:smartsparks/shared/constants.dart';
 import 'components/topicsList.dart';
 import 'components/optionsTab.dart';
 import 'newTopicPage.dart';
+import 'package:smartsparks/services/database.dart';
+import 'package:provider/provider.dart';
+import 'package:smartsparks/models/ssuser.dart';
+import 'package:smartsparks/models/dataModels.dart';
 
 class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final topics = Provider.of<List<Topic>>(context);
+
     return Scaffold(
       backgroundColor: darkGray,
       appBar: AppBar(
@@ -22,7 +29,7 @@ class HomePage extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               BgImage(top: 320),
-              TopicsList(),
+              TopicsList(topics: topics,),
             ],
           )
         )

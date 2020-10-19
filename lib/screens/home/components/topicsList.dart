@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'topicTile.dart';
 import 'package:smartsparks/models/dataModels.dart';
+import 'package:smartsparks/shared/constants.dart';
 
-class TopicsList extends StatefulWidget {
-  @override
-  _TopicsListState createState() => _TopicsListState();
-}
+class TopicsList extends StatelessWidget {
 
-class _TopicsListState extends State<TopicsList> {
-
-  final Topic sampleTopic = Topic(
+  /* final Topic sampleTopic = Topic(
     creatorID: 'C123',
     creatorUsername: 'Admin 1',
     topicID: 'T123',
@@ -21,22 +17,29 @@ Praesent a velit in lectus dictum scelerisque. Sed ultrices vehicula lorem ultri
   
 Pellentesque non sem fermentum, consequat leo sit amet, pretium odio. Phasellus elementum cursus neque, at euismod risus vestibulum sit amet. Nullam leo sapien, placerat ut aliquam quis, elementum non lorem. Duis varius ligula ac eros condimentum pellentesque. Sed non nisi rhoncus, sodales metus vel, pharetra libero. Nam hendrerit metus velit, at egestas lacus pretium ut. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras vel convallis diam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse potenti.
   ''',
-  publishDate: '24/08/2020',
-  deadline: '10/01/2021',
-  sparksCount: 12,
-  );
+    publishDate: '24/08/2020',
+    deadline: '10/01/2021',
+    sparksCount: 12,
+  ); */
 
-  //Get topics data from firebase
+  final List<Topic> topics;
+
+  TopicsList({this.topics});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return topics != null ? ListView.builder(
       padding: EdgeInsets.all(10.0),
       scrollDirection: Axis.horizontal,
-      itemCount: 5, //Count of all topics
+      itemCount: topics.length,
       itemBuilder: (BuildContext context, int index) {
-        return TopicTile(topic: sampleTopic); //Pass in topics data
+        return TopicTile(topic: topics[index]);
       },
+    ) : Center(
+      child: Text(
+        "No topics currently",
+        style: TextStyle(color: white, fontSize: 40, fontWeight: FontWeight.bold)
+      ),
     );
   }
 }
