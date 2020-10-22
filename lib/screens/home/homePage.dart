@@ -4,9 +4,7 @@ import 'package:smartsparks/shared/constants.dart';
 import 'components/topicsList.dart';
 import 'components/optionsTab.dart';
 import 'newTopicPage.dart';
-import 'package:smartsparks/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:smartsparks/models/ssuser.dart';
 import 'package:smartsparks/models/dataModels.dart';
 
 class HomePage extends StatelessWidget {

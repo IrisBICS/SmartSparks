@@ -8,6 +8,7 @@ const middleGray = Color(0xFF65617d);
 const darkGray = Color(0xFF3f3d56);
 const skintone = Color(0xFFfbbebe);
 const white = Color(0xFFFFFFFF);
+const black = Color(0xFF000000);
 
 const textInputDecoration = InputDecoration(
   fillColor: white,

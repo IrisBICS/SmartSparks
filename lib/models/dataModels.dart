@@ -15,6 +15,7 @@ class Topic {
 
 class Spark {
 
+  final String title;
   final String parentTopic;
   final String sparkID;
   final String description;
@@ -24,7 +25,7 @@ class Spark {
   final List<String> voters;
   final int commentsCount;
 
-  Spark({this.parentTopic, this.sparkID, this.description, this.publishDate, this.creatorID, this.creatorRank, this.voters, this.commentsCount});
+  Spark({this.title, this.parentTopic, this.sparkID, this.description, this.publishDate, this.creatorID, this.creatorRank, this.voters, this.commentsCount});
 
 }
 

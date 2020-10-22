@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'topicTile.dart';
 import 'package:smartsparks/models/dataModels.dart';
-import 'package:smartsparks/shared/constants.dart';
+import 'package:smartsparks/shared/loading.dart';
 
 class TopicsList extends StatelessWidget {
 
@@ -33,13 +33,8 @@ Pellentesque non sem fermentum, consequat leo sit amet, pretium odio. Phasellus 
       scrollDirection: Axis.horizontal,
       itemCount: topics.length,
       itemBuilder: (BuildContext context, int index) {
-        return TopicTile(topic: topics[index]);
+        return TopicTile(topic: topics[index], tapEnabled: true);
       },
-    ) : Center(
-      child: Text(
-        "No topics currently",
-        style: TextStyle(color: white, fontSize: 40, fontWeight: FontWeight.bold)
-      ),
-    );
+    ) : Loading();
   }
 }
