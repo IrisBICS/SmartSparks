@@ -10,6 +10,16 @@ class TopicService {
 
   final CollectionReference topicsCollection = FirebaseFirestore.instance.collection('topics');
 
+  Future createSpark(Spark spark) async {
+    topicsCollection.doc(topicID).collection('sparks').doc().set({
+      'creatorID': spark.creatorID,
+      'creatorRank': spark.creatorRank,
+      'title': spark.title,
+      'description': spark.description,
+      'publishDate': spark.publishDate,
+    });
+  }
+
   Topic _topicFromSnapshot(DocumentSnapshot snapshot) {
     Map<String, dynamic> data = snapshot.data();
     return Topic(
@@ -40,7 +50,7 @@ class TopicService {
         commentsCount: data['commentsCount'] ?? 0, //To be replaced by next line
         //commentsCount: //count the number of elements inside the "comments" collection of this spark
       );
-    });
+    }).toList();
   }
 
   //Stream for single topic
@@ -58,8 +68,6 @@ class TopicService {
   //Stream for single spark
 
   //Stream for all comments
-
-  //Create spark
 
   //Create comment
 

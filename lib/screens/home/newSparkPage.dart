@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smartsparks/models/ssuser.dart';
 import 'package:smartsparks/services/database.dart';
+import 'package:smartsparks/services/topicService.dart';
 import 'components/optionsTab.dart';
 import 'package:smartsparks/shared/constants.dart';
 import 'package:smartsparks/shared/bgImage.dart';
-import 'components/topicTile.dart';
+import 'components/sparkTile.dart';
 import 'package:smartsparks/models/dataModels.dart';
 
-class NewTopicPage extends StatelessWidget {
+class NewSparkPage extends StatelessWidget {
+
+  final Topic parentTopic;
+  NewSparkPage(this.parentTopic);
+
   @override
   Widget build(BuildContext context) {
 
@@ -16,17 +21,21 @@ class NewTopicPage extends StatelessWidget {
 
     return StreamProvider<SSUser>.value(
       value: DatabaseService(uid: user.uid).ssuser,
-      child: NewTopic(),
+      child: NewSpark(parentTopic),
     );
   }
 }
 
-class NewTopic extends StatefulWidget {
+class NewSpark extends StatefulWidget {
+
+  final Topic parentTopic;
+  NewSpark(this.parentTopic);
+
   @override
-  _NewTopicState createState() => _NewTopicState();
+  _NewSparkState createState() => _NewSparkState();
 }
 
-class _NewTopicState extends State<NewTopic> {
+class _NewSparkState extends State<NewSpark> {
 
   final _formKey = GlobalKey<FormState>();
 
@@ -45,7 +54,7 @@ class _NewTopicState extends State<NewTopic> {
         appBar: AppBar(
           backgroundColor: yellow,
           elevation: 0.0,
-          title: Text('New Topic'),
+          title: Text('New Spark'),
           bottom: TabBar(
             tabs: [
               Tab(icon: Icon(Icons.code),),
@@ -67,6 +76,11 @@ class _NewTopicState extends State<NewTopic> {
                         key: _formKey,
                         child: Column(
                           children: <Widget>[
+                            Text(
+                              "Topic: " + widget.parentTopic.title,
+                              style: TextStyle(color: white, fontSize: 15),
+                            ),
+                            SizedBox(height: 15,),
                             TextFormField(
                               validator: (val) => val.isEmpty ? 'Please enter a title' : null,
                               decoration: textInputDecoration.copyWith(hintText: 'Title'),
@@ -79,8 +93,8 @@ class _NewTopicState extends State<NewTopic> {
                               validator: (val) => val.isEmpty ? 'Please enter a description' : null,
                               decoration: textInputDecoration.copyWith(hintText: 'Description'),
                               keyboardType: TextInputType.multiline,
-                              minLines: 15,
-                              maxLines: 15,
+                              minLines: 14,
+                              maxLines: 14,
                               onChanged: (val) {
                                 setState(() => description = val);
                               },
@@ -98,16 +112,17 @@ class _NewTopicState extends State<NewTopic> {
                               ),
                               onPressed: () {
                                 if (_formKey.currentState.validate()) {
-                                  DatabaseService(uid: user.uid).updateTopic(
-                                    Topic(
-                                      topicID: null,
+                                  TopicService(topicID: widget.parentTopic.topicID).createSpark(
+                                    Spark(
+                                      parentTopic: widget.parentTopic.topicID,
+                                      sparkID: 'previewSpark',
                                       title: title,
                                       description: description,
                                       publishDate: null,
-                                      deadline: null,
                                       creatorID: user != null ? user.uid : '',
-                                      creatorUsername: user != null ? user.username : '',
-                                      sparksCount: 0,
+                                      creatorRank: user != null ? user.rank : '',
+                                      commentsCount: 0,
+                                      voters: [],
                                     )
                                   ).then((_) {
                                     Navigator.pop(context);
@@ -121,15 +136,16 @@ class _NewTopicState extends State<NewTopic> {
                     ),
                     Container(
                       margin: EdgeInsets.all(10),
-                      child: TopicTile(topic: Topic(
-                        topicID: 'previewTopic',
+                      child: SparkTile(spark: Spark(
+                        parentTopic: widget.parentTopic.topicID,
+                        sparkID: 'previewSpark',
                         title: title,
                         description: description,
                         publishDate: null,
-                        deadline: null,
                         creatorID: user != null ? user.uid : '',
-                        creatorUsername: user != null ? user.username : '',
-                        sparksCount: 0,
+                        creatorRank: user != null ? user.rank : '',
+                        commentsCount: 0,
+                        voters: [],
                       ), tapEnabled: false),
                     )
                   ],
