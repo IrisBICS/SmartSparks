@@ -31,11 +31,8 @@ class _ProfileState extends State<Profile> {
 
   final _formKey = GlobalKey<FormState>();
 
-  //final int testVal = 150;
   final int testMin = 0;
   final int testMax = 1000; //Play with colors
-  //final String testRank = "Active Contributor";
-  //final String testUsername = "User 1";
 
   String newUsername = '';
 

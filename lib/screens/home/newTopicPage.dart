@@ -98,7 +98,7 @@ class _NewTopicState extends State<NewTopic> {
                               ),
                               onPressed: () {
                                 if (_formKey.currentState.validate()) {
-                                  DatabaseService(uid: user.uid).updateTopic(
+                                  DatabaseService(uid: user.uid).createTopic(
                                     Topic(
                                       topicID: null,
                                       title: title,

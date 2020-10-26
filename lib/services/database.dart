@@ -10,13 +10,6 @@ class DatabaseService {
   final CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
   final CollectionReference topicsCollection = FirebaseFirestore.instance.collection('topics');
 
-  /* Future<SSUser> getUser(String uid) async {
-    return usersCollection.doc(uid).get().then((doc) {
-      final userData = doc.data();
-      return userData != null ? SSUser(uid: uid, username: userData['username'], email: userData['email'], rank: userData['rank'], smartPoints: userData['smartPoints'], sparkPoints: userData['sparkPoints']) : null;
-    });
-  } */
-
   Future updateUser(SSUser ssuser) async {
     usersCollection.doc(ssuser.uid).set({
       'username': ssuser.username,
@@ -27,7 +20,7 @@ class DatabaseService {
     });
   }
 
-  Future updateTopic(Topic topic) async {
+  Future createTopic(Topic topic) async {
     topicsCollection.doc().set({
       'creatorID': topic.creatorID,
       'creatorUsername': topic.creatorUsername,

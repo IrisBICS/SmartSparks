@@ -4,9 +4,8 @@ import 'package:smartsparks/models/dataModels.dart';
 class TopicService {
 
   final String topicID;
-  //final String sparkID;
 
-  TopicService({this.topicID, /* this.sparkID */});
+  TopicService({this.topicID,});
 
   final CollectionReference topicsCollection = FirebaseFirestore.instance.collection('topics');
 
