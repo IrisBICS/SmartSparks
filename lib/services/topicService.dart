@@ -16,6 +16,10 @@ class TopicService {
       'title': spark.title,
       'description': spark.description,
       'publishDate': spark.publishDate,
+      'commentsCount': spark.commentsCount,
+    });
+    topicsCollection.doc(topicID).update({
+      'sparksCount': FieldValue.increment(1),
     });
   }
 
@@ -29,8 +33,7 @@ class TopicService {
       description: data['description'] ?? '',
       publishDate: data['publishDate'] ?? '',
       deadline: data['deadline'] ?? '',
-      sparksCount: data['sparksCount'] ?? 0, //To be replaced by next line
-      //sparksCount: //count the number of elements inside the "sparks" collection of this topic
+      sparksCount: data['sparksCount'] ?? 0,
     );
   }
 
@@ -46,8 +49,7 @@ class TopicService {
         description: data['description'] ?? '',
         publishDate: data['publishDate'] ?? '',
         voters: data['voters'] ?? [],
-        commentsCount: data['commentsCount'] ?? 0, //To be replaced by next line
-        //commentsCount: //count the number of elements inside the "comments" collection of this spark
+        commentsCount: data['commentsCount'] ?? 0,
       );
     }).toList();
   }

@@ -28,6 +28,7 @@ class DatabaseService {
       'description': topic.description,
       'publishDate': topic.publishDate,
       'deadline': topic.deadline,
+      'sparksCount': topic.sparksCount,
     });
   }
 
