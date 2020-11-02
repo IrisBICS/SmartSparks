@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:smartsparks/shared/bgImage.dart';
 import 'package:smartsparks/shared/constants.dart';
-import 'components/topicsList.dart';
+import 'components/topicTile.dart';
 import 'components/optionsTab.dart';
 import 'newTopicPage.dart';
-import 'package:smartsparks/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:smartsparks/models/ssuser.dart';
 import 'package:smartsparks/models/dataModels.dart';
+import 'package:smartsparks/shared/loading.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -45,6 +44,30 @@ class HomePage extends StatelessWidget {
         backgroundColor: yellow,
       ),
       endDrawer: OptionsTab(),
+    );
+  }
+}
+
+class TopicsList extends StatelessWidget {
+
+  final List<Topic> topics;
+
+  TopicsList({this.topics});
+
+  @override
+  Widget build(BuildContext context) {
+    return topics != null ? ListView.builder(
+      padding: EdgeInsets.all(10.0),
+      scrollDirection: Axis.horizontal,
+      itemCount: topics.length,
+      itemBuilder: (BuildContext context, int index) {
+        return TopicTile(topic: topics[index], tapEnabled: true);
+      },
+    ) : Center(
+      child: Text(
+        "Be the first to add a topic !",
+        style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.bold),
+      ),
     );
   }
 }
