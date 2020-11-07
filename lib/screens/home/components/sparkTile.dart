@@ -9,8 +9,9 @@ class SparkTile extends StatelessWidget {
 
   final Spark spark;
   final bool tapEnabled;
+  final String topicID;
 
-  SparkTile({this.spark, this.tapEnabled});
+  SparkTile({this.spark, this.tapEnabled, this.topicID});
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +19,12 @@ class SparkTile extends StatelessWidget {
       padding: EdgeInsets.all(10.0),
       child: GestureDetector(
         onTap: () {
-          /* if (tapEnabled) {
+          if (tapEnabled) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SparkPage(sparkID: spark.sparkID)),
+              MaterialPageRoute(builder: (context) => SparkPage(sparkID: spark.sparkID, topicID: topicID)),
             );
-          } */
+          }
         },
         child: Container(
           width: 370.0,
@@ -38,13 +39,6 @@ class SparkTile extends StatelessWidget {
                   trailing: Container(
                     width: 80,
                     child: IconCount(count: spark.voters.length, icon: Icons.arrow_upward, textColor: black, iconColor: darkGray),
-                    /* Wrap(
-                      direction: Axis.vertical,
-                      children: <Widget>[ //issue here
-                        IconCount(count: spark.commentsCount, icon: Icons.arrow_upward, textColor: black, iconColor: darkGray),
-                        IconCount(count: spark.commentsCount, icon: Icons.comment, textColor: black, iconColor: darkGray),
-                      ]
-                    ), */
                   )
                 ),
                 Padding(

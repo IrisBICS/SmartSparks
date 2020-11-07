@@ -66,10 +66,4 @@ class TopicService {
       .map(_sparksListFromQuerySnapshot);
   }
 
-  //Stream for single spark
-
-  //Stream for all comments
-
-  //Create comment
-
 }

@@ -31,6 +31,7 @@ class Spark {
 
 class Comment {
 
+  final String commentID;
   final String parentSpark;
   final String body;
   final String publishDate;
@@ -38,6 +39,6 @@ class Comment {
   final String authorRank;
   final List<String> likes;
 
-  Comment({this.parentSpark, this.body, this.publishDate, this.authorID, this.authorRank, this.likes});
+  Comment({this.commentID, this.parentSpark, this.body, this.publishDate, this.authorID, this.authorRank, this.likes});
 
 }
