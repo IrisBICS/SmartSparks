@@ -11,7 +11,19 @@ class SparkService {
   final CollectionReference topicsCollection = FirebaseFirestore.instance.collection('topics');
 
   //Create comment
-  //...
+  Future createComment(Comment comment) async {
+    topicsCollection.doc(topicID).collection('sparks').doc(sparkID).collection('comments').doc().set({
+      'title': comment.title,
+      'body': comment.body,
+      'publishDate': comment.publishDate,
+      'authorID': comment.authorID,
+      'authorRank': comment.authorRank,
+      //'likes': []
+    });
+    topicsCollection.doc(topicID).collection('sparks').doc(sparkID).update({
+      'commentsCount': FieldValue.increment(1),
+    });
+  }
 
   Spark _sparkFromSnapshot(DocumentSnapshot snapshot) {
     Map<String, dynamic> data = snapshot.data();

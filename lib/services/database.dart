@@ -55,8 +55,7 @@ class DatabaseService {
         description: data['description'] ?? '',
         publishDate: data['publishDate'] ?? '',
         deadline: data['deadline'] ?? '',
-        sparksCount: data['sparksCount'] ?? 0, //To be replaced by next line
-        //sparksCount: //count the number of elements inside the "sparks" collection of this topic
+        sparksCount: data['sparksCount'] ?? 0,
       );
     }).toList();
   }

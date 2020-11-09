@@ -112,7 +112,22 @@ class _NewCommentState extends State<NewComment> {
                                 style: TextStyle(color: white, fontSize: 18),
                               ),
                               onPressed: () {
-                                if (_formKey.currentState.validate()) {}
+                                if (_formKey.currentState.validate()) {
+                                  SparkService(topicID: widget.parentSpark.parentTopic, sparkID: widget.parentSpark.sparkID).createComment(
+                                    Comment(
+                                      commentID: 'previewComment',
+                                      parentSpark: widget.parentSpark.sparkID,
+                                      title: title,
+                                      body: body,
+                                      publishDate: '',
+                                      authorID: user.uid,
+                                      authorRank: user.rank,
+                                      likes: [],
+                                    )
+                                  ).then((_) {
+                                    Navigator.pop(context);
+                                  });
+                                }
                               },
                             ),
                           ]

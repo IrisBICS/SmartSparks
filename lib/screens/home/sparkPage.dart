@@ -112,7 +112,7 @@ class TopContent extends StatelessWidget {
             "Posted by " + spark.creatorRank,
             style: TextStyle(color: lightGray),
           ),
-          trailing: IconCount(count: spark.commentsCount, icon: Icons.star, iconColor: yellow, textColor: white),
+          trailing: IconCount(count: spark.commentsCount, icon: Icons.comment, iconColor: white, textColor: white),
         ),
         Padding(
           padding: EdgeInsets.all(15.0),
@@ -152,26 +152,20 @@ class CommentsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    //final comments = Provider.of<List<Comment>>(context);
+    final comments = Provider.of<List<Comment>>(context);
 
-    final Comment sampleComment = Comment(
-      commentID: 'sampleComment',
-      parentSpark: sparkID,
-      title: 'Sample Comment',
-      body: 'This is a sample comment',
-      publishDate: '',
-      authorID: '',
-      authorRank: 'Novice Contributor',
-      likes: ['User1', 'User2']
-    );
-
-    return ListView.builder(
+    return comments != null && comments.length != 0 ? ListView.builder(
       padding: EdgeInsets.all(10.0),
       scrollDirection: Axis.horizontal,
-      itemCount: 5,
+      itemCount: comments.length,
       itemBuilder: (BuildContext context, int index) {
-        return CommentTile(topicID: topicID, sparkID: sparkID, comment: sampleComment);
+        return CommentTile(topicID: topicID, sparkID: sparkID, comment: comments[index]);
       },
+    ) : Center(
+      child: Text(
+        "Be the first to post a comment on this topic !",
+        style: TextStyle(color: white, fontSize: 20, fontWeight: FontWeight.bold),
+      ),
     );
   }
 }
