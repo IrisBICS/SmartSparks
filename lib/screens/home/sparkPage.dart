@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:smartsparks/screens/home/components/commentTile.dart';
 import 'package:smartsparks/services/sparkService.dart';
 import 'package:smartsparks/shared/constants.dart';
 import 'package:smartsparks/shared/bgImage.dart';
@@ -8,6 +9,7 @@ import 'package:smartsparks/models/dataModels.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:smartsparks/shared/loading.dart';
 import 'components/iconCount.dart';
+import 'newCommentPage.dart';
 
 class SparkPage extends StatelessWidget {
 
@@ -26,17 +28,18 @@ class SparkPage extends StatelessWidget {
 }
 
 class SparkPageContent extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
 
-    //final spark = Provider.of<Spark>(context);
+    final spark = Provider.of<Spark>(context);
 
     return Scaffold(
       backgroundColor: darkGray,
       appBar: AppBar(
         backgroundColor: yellow,
         elevation: 0.0,
-        title: Text('Topic'),
+        title: Text('Spark'),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -56,7 +59,7 @@ class SparkPageContent extends StatelessWidget {
                     color: white,
                   ),
                   Expanded(
-                    child: BottomContent(),
+                    child: BottomContent(topicID: spark != null ? spark.parentTopic : null, sparkID: spark != null ? spark.sparkID : null,)
                   )
                 ],
               ),
@@ -66,10 +69,10 @@ class SparkPageContent extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          /* Navigator.push(
+          Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => NewCommentPage()),
-          ); */
+            MaterialPageRoute(builder: (context) => NewCommentPage(parentSpark: spark)),
+          );
         },
         child: Icon(Icons.add),
         backgroundColor: yellow,
@@ -124,19 +127,51 @@ class TopContent extends StatelessWidget {
 }
 
 class BottomContent extends StatelessWidget {
+
+  final String topicID;
+  final String sparkID;
+
+  BottomContent({this.topicID, this.sparkID});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: skintone.withAlpha(150)
-    );
+    return topicID != null && sparkID != null ? StreamProvider<List<Comment>>.value(
+      value: SparkService(topicID: topicID, sparkID: sparkID).comments,
+      child: CommentsList(topicID: topicID, sparkID: sparkID),
+    ) : Loading();
   }
 }
 
 class CommentsList extends StatelessWidget {
+
+  final String topicID;
+  final String sparkID;
+
+  CommentsList({this.topicID, this.sparkID});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+
+    //final comments = Provider.of<List<Comment>>(context);
+
+    final Comment sampleComment = Comment(
+      commentID: 'sampleComment',
+      parentSpark: sparkID,
+      title: 'Sample Comment',
+      body: 'This is a sample comment',
+      publishDate: '',
+      authorID: '',
+      authorRank: 'Novice Contributor',
+      likes: ['User1', 'User2']
+    );
+
+    return ListView.builder(
+      padding: EdgeInsets.all(10.0),
+      scrollDirection: Axis.horizontal,
+      itemCount: 5,
+      itemBuilder: (BuildContext context, int index) {
+        return CommentTile(topicID: topicID, sparkID: sparkID, comment: sampleComment);
+      },
     );
   }
 }

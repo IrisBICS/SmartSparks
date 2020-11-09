@@ -33,12 +33,13 @@ class Comment {
 
   final String commentID;
   final String parentSpark;
+  final String title;
   final String body;
   final String publishDate;
   final String authorID;
   final String authorRank;
   final List<String> likes;
 
-  Comment({this.commentID, this.parentSpark, this.body, this.publishDate, this.authorID, this.authorRank, this.likes});
+  Comment({this.title, this.commentID, this.parentSpark, this.body, this.publishDate, this.authorID, this.authorRank, this.likes});
 
 }

@@ -34,6 +34,7 @@ class SparkService {
       return Comment(
         commentID: doc.id,
         parentSpark: sparkID,
+        title: data['title'],
         body: data['body'] ?? '',
         publishDate: data['publishDate'] ?? '',
         authorID: data['authorID'] ?? '',
@@ -50,7 +51,7 @@ class SparkService {
   }
 
   //Stream for all comments
-  Stream<List<Comment>> get comment {
+  Stream<List<Comment>> get comments {
     return topicsCollection.doc(topicID).collection('sparks').doc(sparkID).collection('comments').snapshots()
       .map(_commentsListFromQuerySnapshot);
   }
