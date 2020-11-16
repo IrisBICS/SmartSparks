@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartsparks/screens/wrapper.dart';
 import 'package:smartsparks/shared/constants.dart';
 import 'package:smartsparks/services/auth.dart';
 import 'package:smartsparks/screens/home/profilePage.dart';
@@ -30,14 +31,10 @@ class _OptionsTabState extends State<OptionsTab> {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.swap_horiz),
-            title: Text('Switch view'),
-            onTap: () {},
-          ),
-          ListTile(
             leading: Icon(Icons.account_circle),
             title: Text('Profile'),
             onTap: () {
+              Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ProfilePage()),
@@ -56,6 +53,11 @@ class _OptionsTabState extends State<OptionsTab> {
               dynamic result = _auth.logout();
               if (result == null) {
                 print('Unsuccessful');
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Wrapper()),
+                );
               }
             },
           ),

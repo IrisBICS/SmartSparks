@@ -22,7 +22,7 @@ class Spark {
   final String publishDate;
   final String creatorID;
   final String creatorRank;
-  final List<String> voters;
+  final List<dynamic> voters;
   final int commentsCount;
 
   Spark({this.title, this.parentTopic, this.sparkID, this.description, this.publishDate, this.creatorID, this.creatorRank, this.voters, this.commentsCount});
@@ -38,7 +38,7 @@ class Comment {
   final String publishDate;
   final String authorID;
   final String authorRank;
-  final List<String> likes;
+  final List<dynamic> likes;
 
   Comment({this.title, this.commentID, this.parentSpark, this.body, this.publishDate, this.authorID, this.authorRank, this.likes});
 

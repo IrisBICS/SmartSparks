@@ -10,6 +10,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:smartsparks/shared/loading.dart';
 import 'components/iconCount.dart';
 import 'newCommentPage.dart';
+import 'package:smartsparks/models/ssuser.dart';
 
 class SparkPage extends StatelessWidget {
 
@@ -82,13 +83,21 @@ class SparkPageContent extends StatelessWidget {
   }
 }
 
-class TopContent extends StatelessWidget {
+class TopContent extends StatefulWidget {
+  @override
+  _TopContentState createState() => _TopContentState();
+}
+
+class _TopContentState extends State<TopContent> {
 
   final TextStyle whiteText = TextStyle(color: white);
+  bool isUpVoted = false;
 
   @override
   Widget build(BuildContext context) {
     final spark = Provider.of<Spark>(context);
+    final user = Provider.of<ProviderUser>(context);
+
     final MarkdownStyleSheet mdStyle = MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
       h1: whiteText,
       h2: whiteText,
@@ -101,6 +110,12 @@ class TopContent extends StatelessWidget {
       a: TextStyle(color: yellow),
     );
 
+    if (spark != null && user != null && spark.voters.contains(user.uid)) {
+      setState(() => isUpVoted = true);
+    } else {
+      setState(() => isUpVoted = false);
+    }
+
     return spark != null ? ListView(
       children: <Widget>[
         ListTile(
@@ -112,7 +127,12 @@ class TopContent extends StatelessWidget {
             "Posted by " + spark.creatorRank,
             style: TextStyle(color: lightGray),
           ),
-          trailing: IconCount(count: spark.commentsCount, icon: Icons.comment, iconColor: white, textColor: white),
+          trailing: GestureDetector(
+                    onTap: () {
+                      SparkService(topicID: spark.parentTopic, sparkID: spark.sparkID).changeSparkVote(user.uid, isUpVoted);
+                    },
+                    child: IconCount(count: spark.voters.length, icon: Icons.arrow_upward, textColor: white, iconColor: isUpVoted ? yellow : white)
+                  ),
         ),
         Padding(
           padding: EdgeInsets.all(15.0),
@@ -159,7 +179,7 @@ class CommentsList extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       itemCount: comments.length,
       itemBuilder: (BuildContext context, int index) {
-        return CommentTile(topicID: topicID, sparkID: sparkID, comment: comments[index]);
+        return CommentTile(topicID: topicID, sparkID: sparkID, comment: comments[index], tapEnabled: true);
       },
     ) : Center(
       child: Text(

@@ -14,10 +14,10 @@ class ProfilePage extends StatelessWidget {
 
     final user = Provider.of<ProviderUser>(context);
 
-    return StreamProvider<SSUser>.value(
+    return user != null ? StreamProvider<SSUser>.value(
       value: DatabaseService(uid: user.uid).ssuser,
       child: Profile(),
-    );
+    ) : Loading();
   }
 }
 

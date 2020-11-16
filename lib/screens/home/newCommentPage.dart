@@ -136,16 +136,19 @@ class _NewCommentState extends State<NewComment> {
                     ),
                     Container(
                       margin: EdgeInsets.all(10),
-                      child: CommentTile(comment: Comment(
-                        commentID: 'previewComment',
-                        parentSpark: widget.parentSpark.sparkID,
-                        title: title,
-                        body: body,
-                        publishDate: '',
-                        authorID: user != null ? user.uid : '',
-                        authorRank: user != null ? user.rank : '',
-                        likes: [],
-                      ),),
+                      child: CommentTile(
+                        comment: Comment(
+                          commentID: 'previewComment',
+                          parentSpark: widget.parentSpark.sparkID,
+                          title: title,
+                          body: body,
+                          publishDate: '',
+                          authorID: user != null ? user.uid : '',
+                          authorRank: user != null ? user.rank : '',
+                          likes: [],
+                        ),
+                        tapEnabled: false,
+                      ),
                     )
                   ],
                 ),

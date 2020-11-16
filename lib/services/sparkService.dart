@@ -18,11 +18,38 @@ class SparkService {
       'publishDate': comment.publishDate,
       'authorID': comment.authorID,
       'authorRank': comment.authorRank,
-      //'likes': []
     });
     topicsCollection.doc(topicID).collection('sparks').doc(sparkID).update({
       'commentsCount': FieldValue.increment(1),
     });
+  }
+
+  //Toggle vote-unvote spark
+  Future changeSparkVote(dynamic uid, bool isUpVoted) async {
+    DocumentReference sparkDoc = topicsCollection.doc(topicID).collection('sparks').doc(sparkID);
+    if (isUpVoted) { //If already voted, remove the vote
+      sparkDoc.update({
+        'voters': FieldValue.arrayRemove([uid]),
+      });
+    } else { //Else add the vote
+      sparkDoc.update({
+        'voters': FieldValue.arrayUnion([uid]),
+      });
+    }
+  }
+
+  //Toggle like-unlike comment
+  Future changeCommentLike(dynamic uid, bool isLiked, String commentID) async {
+    DocumentReference commentDoc = topicsCollection.doc(topicID).collection('sparks').doc(sparkID).collection('comments').doc(commentID);
+    if (isLiked) { //If already voted, remove the vote
+      commentDoc.update({
+        'likes': FieldValue.arrayRemove([uid]),
+      });
+    } else { //Else add the vote
+      commentDoc.update({
+        'likes': FieldValue.arrayUnion([uid]),
+      });
+    }
   }
 
   Spark _sparkFromSnapshot(DocumentSnapshot snapshot) {
@@ -51,7 +78,7 @@ class SparkService {
         publishDate: data['publishDate'] ?? '',
         authorID: data['authorID'] ?? '',
         authorRank: data['authorRank'] ?? '',
-        likes: data['likes'] ?? [], //Idk if I should put the count
+        likes: data['likes'] ?? [],
       );
     }).toList();
   }
