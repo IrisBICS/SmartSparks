@@ -6,7 +6,6 @@ import 'components/optionsTab.dart';
 import 'newTopicPage.dart';
 import 'package:provider/provider.dart';
 import 'package:smartsparks/models/dataModels.dart';
-import 'package:smartsparks/shared/loading.dart';
 
 class HomePage extends StatelessWidget {
 

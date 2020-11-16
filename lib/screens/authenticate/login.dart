@@ -28,6 +28,7 @@ class _LoginState extends State<Login> {
     return loading ? Loading() : Scaffold(
       backgroundColor: darkGray,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: yellow,
         elevation: 0.0,
         title: Text('SmartSparks'),

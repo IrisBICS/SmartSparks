@@ -135,12 +135,16 @@ class BottomContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return topicID != null ? StreamProvider<List<Spark>>.value(
       value: TopicService(topicID: topicID).sparks,
-      child: SparksList(),
+      child: SparksList(topicID: topicID),
     ) : Loading();
   }
 }
 
 class SparksList extends StatelessWidget {
+
+  final String topicID;
+
+  SparksList({this.topicID});
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +156,7 @@ class SparksList extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       itemCount: sparks.length,
       itemBuilder: (BuildContext context, int index) {
-        return SparkTile(spark: sparks[index], tapEnabled: true);
+        return SparkTile(spark: sparks[index], tapEnabled: true, topicID: topicID);
       },
     ) : Center(
       child: Text(
