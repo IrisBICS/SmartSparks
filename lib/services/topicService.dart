@@ -23,9 +23,13 @@ class TopicService {
     });
   }
 
+  Future deleteTopic() async {
+    topicsCollection.doc(topicID).delete();
+  }
+
   Topic _topicFromSnapshot(DocumentSnapshot snapshot) {
     Map<String, dynamic> data = snapshot.data();
-    return Topic(
+    return data != null ? Topic(
       creatorID: data['creatorID'] ?? '',
       creatorUsername: data['creatorUsername'] ?? '',
       topicID: topicID,
@@ -34,7 +38,7 @@ class TopicService {
       publishDate: data['publishDate'] ?? '',
       deadline: data['deadline'] ?? '',
       sparksCount: data['sparksCount'] ?? 0,
-    );
+    ) : null;
   }
 
   List<Spark> _sparksListFromQuerySnapshot(QuerySnapshot snapshot) {

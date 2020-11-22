@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartsparks/screens/home/closeTopicPage.dart';
 import 'package:smartsparks/shared/constants.dart';
 import 'iconCount.dart';
 import 'package:smartsparks/models/dataModels.dart';
@@ -36,6 +37,15 @@ class TopicTile extends StatelessWidget {
                   title: Text(topic.title),
                   subtitle: Text("Posted by " + topic.creatorUsername),
                   trailing: IconCount(count: topic.sparksCount, icon: Icons.star, textColor: black, iconColor: yellow),
+                  leading: IconButton(
+                    icon: Icon(Icons.archive),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CloseTopicPage(topic: topic)),
+                      );
+                    },
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(15.0),
