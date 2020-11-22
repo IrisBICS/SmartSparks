@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:smartsparks/models/ssuser.dart';
 import 'package:smartsparks/services/database.dart';
 import 'package:smartsparks/services/topicService.dart';
+import 'package:smartsparks/services/userService.dart';
 import 'components/optionsTab.dart';
 import 'package:smartsparks/shared/constants.dart';
 import 'package:smartsparks/shared/bgImage.dart';
@@ -125,7 +126,9 @@ class _NewSparkState extends State<NewSpark> {
                                       voters: [],
                                     )
                                   ).then((_) {
-                                    Navigator.pop(context);
+                                    UserService(uid: user.uid).addPointsAndUpdateRank(0, 10).then((_) {
+                                      Navigator.pop(context);
+                                    });
                                   });
                                 }
                               },
