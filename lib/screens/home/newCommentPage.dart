@@ -129,7 +129,7 @@ class _NewCommentState extends State<NewComment> {
                                     UserService(uid: user.uid).addPointsAndUpdateRank(10, 0).then((_) {
                                       Navigator.pop(context);
                                     });
-                                });
+                                  });
                                 }
                               },
                             ),
