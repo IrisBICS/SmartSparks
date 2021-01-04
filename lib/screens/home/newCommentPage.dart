@@ -124,6 +124,7 @@ class _NewCommentState extends State<NewComment> {
                                       authorID: user.uid,
                                       authorRank: user.rank,
                                       likes: [],
+                                      isMarked: false,
                                     )
                                   ).then((_) {
                                     UserService(uid: user.uid).addPointsAndUpdateRank(10, 0).then((_) {
@@ -149,6 +150,7 @@ class _NewCommentState extends State<NewComment> {
                           authorID: user != null ? user.uid : '',
                           authorRank: user != null ? user.rank : '',
                           likes: [],
+                          isMarked: false,
                         ),
                         tapEnabled: false,
                       ),

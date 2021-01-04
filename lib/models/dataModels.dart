@@ -39,7 +39,8 @@ class Comment {
   final String authorID;
   final String authorRank;
   final List<dynamic> likes;
+  final bool isMarked;
 
-  Comment({this.title, this.commentID, this.parentSpark, this.body, this.publishDate, this.authorID, this.authorRank, this.likes});
+  Comment({this.title, this.commentID, this.parentSpark, this.body, this.publishDate, this.authorID, this.authorRank, this.likes, this.isMarked});
 
 }
