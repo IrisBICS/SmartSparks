@@ -31,9 +31,6 @@ class _ProfileState extends State<Profile> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final int testMin = 0;
-  final int testMax = 1000; //Play with colors
-
   String newUsername = '';
 
   @override
@@ -62,8 +59,8 @@ class _ProfileState extends State<Profile> {
                       child: Row(
                         children: <Widget>[
                           Expanded(child: SizedBox()),
-                          PointGauge(min: testMin, max: testMax, val: user.smartPoints, label: "Intuition"),
-                          PointGauge(min: testMin, max: testMax, val: user.sparkPoints, label: "Innovation"),
+                          PointGauge(val: user.smartPoints, label: "Intuition"),
+                          PointGauge(val: user.sparkPoints, label: "Innovation"),
                           Expanded(child: SizedBox()),
                         ],
                       ),

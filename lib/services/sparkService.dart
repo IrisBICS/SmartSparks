@@ -18,6 +18,7 @@ class SparkService {
       'publishDate': comment.publishDate,
       'authorID': comment.authorID,
       'authorRank': comment.authorRank,
+      'isMarked': false,
     });
     topicsCollection.doc(topicID).collection('sparks').doc(sparkID).update({
       'commentsCount': FieldValue.increment(1),
@@ -52,6 +53,13 @@ class SparkService {
     }
   }
 
+  Future markCommentAsUseful(String commentID) async {
+    DocumentReference commentDoc = topicsCollection.doc(topicID).collection('sparks').doc(sparkID).collection('comments').doc(commentID);
+    commentDoc.update({
+      'isMarked': true,
+    });
+  }
+
   Spark _sparkFromSnapshot(DocumentSnapshot snapshot) {
     Map<String, dynamic> data = snapshot.data();
     return Spark(
@@ -79,6 +87,7 @@ class SparkService {
         authorID: data['authorID'] ?? '',
         authorRank: data['authorRank'] ?? '',
         likes: data['likes'] ?? [],
+        isMarked: data['isMarked'] ?? false,
       );
     }).toList();
   }

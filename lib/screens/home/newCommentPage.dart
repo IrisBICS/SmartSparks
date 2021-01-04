@@ -8,6 +8,7 @@ import 'package:smartsparks/shared/constants.dart';
 import 'package:smartsparks/shared/bgImage.dart';
 import 'components/commentTile.dart';
 import 'package:smartsparks/models/dataModels.dart';
+import 'package:smartsparks/services/userService.dart';
 
 class NewCommentPage extends StatelessWidget {
 
@@ -123,9 +124,12 @@ class _NewCommentState extends State<NewComment> {
                                       authorID: user.uid,
                                       authorRank: user.rank,
                                       likes: [],
+                                      isMarked: false,
                                     )
                                   ).then((_) {
-                                    Navigator.pop(context);
+                                    UserService(uid: user.uid).addPointsAndUpdateRank(10, 0).then((_) {
+                                      Navigator.pop(context);
+                                    });
                                   });
                                 }
                               },
@@ -146,6 +150,7 @@ class _NewCommentState extends State<NewComment> {
                           authorID: user != null ? user.uid : '',
                           authorRank: user != null ? user.rank : '',
                           likes: [],
+                          isMarked: false,
                         ),
                         tapEnabled: false,
                       ),

@@ -6,13 +6,34 @@ class PointGauge extends StatelessWidget {
 
   final String label;
   final int val;
-  final int min;
-  final int max;
 
-  PointGauge({this.min, this.max, this.val, this.label});
+  PointGauge({this.val, this.label});
+
+  final List<int> ranges = [0, 10, 200, 500, 1000];
+  final List<Color> colors = [blue, green, yellow, orange, red];
+
+  Map<String, dynamic> _getRangeAndColor(points) {
+    for (var i = 0; i < ranges.length - 1; i++) {
+      if (points < ranges[i + 1]) {
+        return {
+          "min": ranges[i], 
+          "max": ranges[i + 1],
+          "color": colors[i]
+        };
+      }
+    }
+    return {
+      "min": 999,
+      "max": points,
+      "color": colors.last,
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    final Map<String, dynamic> rangeAndColor = _getRangeAndColor(val);
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Column(
@@ -30,8 +51,8 @@ class PointGauge extends StatelessWidget {
             child: SfRadialGauge(
               axes: <RadialAxis>[
                 RadialAxis(
-                  minimum: min.toDouble(),
-                  maximum: max.toDouble(),
+                  minimum: rangeAndColor["min"].toDouble(),
+                  maximum: rangeAndColor["max"].toDouble(),
                   showLabels: false,
                   showTicks: false,
                   axisLineStyle: AxisLineStyle(
@@ -46,7 +67,7 @@ class PointGauge extends StatelessWidget {
                       cornerStyle: CornerStyle.bothCurve,
                       width: 0.2,
                       sizeUnit: GaugeSizeUnit.factor,
-                      color: yellow,
+                      color: rangeAndColor["color"],
                     )
                   ],
                   annotations: <GaugeAnnotation>[

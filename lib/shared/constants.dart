@@ -10,6 +10,12 @@ const skintone = Color(0xFFfbbebe);
 const white = Color(0xFFFFFFFF);
 const black = Color(0xFF000000);
 
+//Blue, green, yellow, orange, red
+const blue = Colors.blue;
+const green = Colors.green;
+const orange = Colors.orange;
+const red = Colors.red;
+
 const textInputDecoration = InputDecoration(
   fillColor: white,
   filled: true,
